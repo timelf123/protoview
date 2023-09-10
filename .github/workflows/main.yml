@@ -26,6 +26,8 @@ jobs:
             sdk-index-url: https://up.unleashedflip.com/directory.json
             sdk-channel: release
     name: 'fap ufbt build for ${{ matrix.name }}'
+    env:
+      UNLEASHED_FIRMWARE: ${{ matrix.sdk-index-url == 'https://up.unleashedflip.com/directory.json' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3

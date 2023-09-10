@@ -3,7 +3,11 @@
 
 #include "app.h"
 #include <gui/view.h>
+#ifdef UNLEASHED_FIRMWARE
 #include <toolbox/name_generator.h>
+#else
+#include <lib/toolbox/random_name.h>
+#endif
 
 /* This view has subviews accessible navigating up/down. This
  * enumaration is used to track the currently active subview. */
