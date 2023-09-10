@@ -3,7 +3,7 @@
 
 #include "app.h"
 #include <gui/view.h>
-#include <lib/toolbox/random_name.h>
+#include <toolbox/name_generator.h>
 
 /* This view has subviews accessible navigating up/down. This
  * enumaration is used to track the currently active subview. */
