@@ -31,21 +31,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Build with ufbt (DEV_SDK=1)
-        if: env.DEV_SDK == '1'
+      - name: Build with ufbt
+        run: |
+          echo "UFBT_ARGS=$(if [[ '${{ env.DEV_SDK }}' == '1' ]]; then echo '--extra-define -DDEV_SDK'; else echo '-s'; fi)" >> $GITHUB_ENV
         uses: flipperdevices/flipperzero-ufbt-action@v0.1.2
+        id: build-app
         with:
           sdk-channel: ${{ matrix.sdk-channel }}
           sdk-index-url: ${{ matrix.sdk-index-url }}
-          ufbt-args: "--extra-define -DDEV_SDK"
-          
-      - name: Build with ufbt (default)
-        if: env.DEV_SDK != '1'
-        uses: flipperdevices/flipperzero-ufbt-action@v0.1.2
-        with:
-          sdk-channel: ${{ matrix.sdk-channel }}
-          sdk-index-url: ${{ matrix.sdk-index-url }}
-          ufbt-args: "-s"
+          ufbt-args: ${{ env.UFBT_ARGS }}
       - name: Upload app artifacts
         uses: actions/upload-artifact@v3
         with:
