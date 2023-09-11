@@ -33,7 +33,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Build with ufbt
         run: |
-          echo "UFBT_ARGS=$(if [[ '${{ env.DEV_SDK }}' == '1' ]]; then echo '--extra-define -DDEV_SDK'; else echo '-s'; fi)" >> $GITHUB_ENV
+          echo "UFBT_ARGS=$(if [[ '${{ env.DEV_SDK }}' == 'true' ]]; then echo '--extra-define -DDEV_SDK'; else echo '-s'; fi)" >> $GITHUB_ENV
       - name: debug env
         run: env
       - name: Build with ufbt (actual)
