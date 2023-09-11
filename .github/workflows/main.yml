@@ -34,7 +34,6 @@ jobs:
       - name: Set Build Args
         run: echo "UFBT_ARGS=$(if [ '${{ env.DEV_SDK }}' == '1' ]; then echo '--extra-define -DDEV_SDK'; else echo '-s'; fi)" >> $GITHUB_ENV
       - name: Build with ufbt
-      - name: Build with ufbt
         uses: flipperdevices/flipperzero-ufbt-action@v0.1.2
         id: build-app
         with:
