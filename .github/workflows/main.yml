@@ -27,7 +27,7 @@ jobs:
             sdk-channel: release
     name: 'fap ufbt build for ${{ matrix.name }}'
     env:
-      UNLEASHED_FIRMWARE: ${{ matrix.sdk-index-url == 'https://up.unleashedflip.com/directory.json' }}
+      DEV_SDK: ${{ matrix.sdk-channel == 'dev' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -37,7 +37,7 @@ jobs:
         with:
           sdk-channel: ${{ matrix.sdk-channel }}
           sdk-index-url: ${{ matrix.sdk-index-url }}
-          ufbt-args: "${{ env.UNLEASHED_FIRMWARE == '1' && '--extra-define -DUNLEASHED_FIRMWARE' || '-s' }}" # -s by default
+          ufbt-args: "${{ env.DEV_SDK == '1' && '--extra-define -DDEV_SDK' || '-s' }}" # -s by default
       - name: Upload app artifacts
         uses: actions/upload-artifact@v3
         with:
