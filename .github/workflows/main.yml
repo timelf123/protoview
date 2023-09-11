@@ -37,6 +37,7 @@ jobs:
         with:
           sdk-channel: ${{ matrix.sdk-channel }}
           sdk-index-url: ${{ matrix.sdk-index-url }}
+          ufbt-args: "--extra-define ${{ env.UNLEASHED_FIRMWARE == '1' && '-DUNLEASHED_FIRMWARE' || '' }}" # -s by default
       - name: Upload app artifacts
         uses: actions/upload-artifact@v3
         with:
