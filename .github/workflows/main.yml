@@ -29,6 +29,10 @@ jobs:
     env:
       DEV_SDK: ${{ matrix.sdk-channel == 'dev' }}
     steps:
+      - name: Set Swap Space
+        uses: pierotofy/set-swap-space@master
+        with:
+          swap-size-gb: 10
       - name: Checkout
         uses: actions/checkout@v3
       - name: Build with ufbt
