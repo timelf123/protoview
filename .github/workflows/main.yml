@@ -41,7 +41,7 @@ jobs:
       - name: debug env
         run: env
       - name: Build with ufbt (actual)
-        uses: flipperdevices/flipperzero-ufbt-action@v0.1.2
+        uses: flipperdevices/flipperzero-ufbt-action@v0.1.3
         id: build-app
         with:
           sdk-channel: ${{ matrix.sdk-channel }}
