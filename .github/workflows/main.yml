@@ -35,11 +35,9 @@ jobs:
           swap-size-gb: 10
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Build with ufbt
+      - name: Set UFBT_ARGS
         run: |
-          echo "UFBT_ARGS=$(if [[ '${{ env.DEV_SDK }}' == 'true' ]]; then echo '--extra-define -DDEV_SDK'; else echo '-s'; fi)" >> $GITHUB_ENV
-      - name: debug env
-        run: env
+          echo "UFBT_ARGS=$(if [[ '${{ env.DEV_SDK }}' == 'true' ]]; then echo '--extra-define=DEV_SDK'; else echo '-s'; fi)" >> $GITHUB_ENV
       - name: Build with ufbt (actual)
         uses: flipperdevices/flipperzero-ufbt-action@v0.1.3
         id: build-app
